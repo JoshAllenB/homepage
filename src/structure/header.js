@@ -49,13 +49,13 @@ export default class Header {
         const unOrderedList = document.createElement("ul");
         unOrderedList.classList.add("nav-container");
         const tabs = [
-          { page: "About", link: "about" },
-          { page: "Work", link: "work" },
-          { page: "Contact", link: "contact" },
+          { page: "About", link: "#about" },
+          { page: "Work", link: "#work" },
+          { page: "Contact", link: "#contact" },
         ];
         tabs.forEach((item) => {
           const list = document.createElement("li");
-          list.innerHTML = `<a class="nav-links">${item.page}</a>`;
+          list.innerHTML = `<a class="nav-links" href="${item.link}">${item.page}</a>`; // Updated link with href attribute
           unOrderedList.appendChild(list);
         });
 
