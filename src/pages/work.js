@@ -28,14 +28,14 @@ export default class Work {
       "Todo App",
       "This app helps you keep track of your tasks and stay organized!",
       todoImg,
-      "https://github.com/your-todo-app-repo"
+      "https://github.com/JoshAllenB/todo-app"
     );
 
     const valentineAppCard = Work.generateCard(
       "Valentine App",
       "This app helps you celebrate Valentine's Day with your loved ones!",
       valentineImg,
-      "https://github.com/your-valentine-app-repo"
+      "https://github.com/JoshAllenB/valentine-app"
     );
 
     cardContainer.appendChild(weatherAppCard);
