@@ -4,6 +4,7 @@ export default class About {
   static loadAbout = () => {
     const container = document.createElement("div");
     container.className = "about";
+    container.id = "about";
 
     const imgContainer = document.createElement("div");
     imgContainer.className = "about-img-container";
@@ -18,7 +19,7 @@ export default class About {
 
   static description = () => {
     const descriptionContainer = document.createElement("div");
-    descriptionContainer.className = "hero";
+    descriptionContainer.className = "about-container";
 
     const aboutContainer = document.createElement("div");
     aboutContainer.className = "about-content";
