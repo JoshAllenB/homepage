@@ -18,9 +18,7 @@ module.exports = {
       template: path.join(__dirname, "src", "index.html"),
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: path.resolve(__dirname, "src/icon"), to: "icon" },
-      ],
+      patterns: [{ from: path.resolve(__dirname, "src/icon"), to: "icon" }],
     }),
   ],
   output: {
