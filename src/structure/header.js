@@ -18,56 +18,67 @@ export default class Header {
     window.addEventListener("scroll", handleScroll);
 
     const title = (logoName) => {
-      const box = document.createElement("div");
-      box.className = "title-logo";
-      box.innerHTML = `
-          <a href="/"><span>${logoName}</span></a>`;
-      return box;
+      const h1 = document.createElement("h1");
+      h1.className = "title-logo";
+      h1.textContent = logoName;
+      return h1;
     };
 
-    const menuToggle = () => {
+    // menuToggle now takes nav as argument and toggles 'active' class
+    const menuToggle = (nav) => {
       const toggleContainer = document.createElement("div");
       toggleContainer.className = "menu-toggle";
-
-      if (window.innerWidth <= 960) {
-        toggleContainer.innerHTML = `<i class="fa-solid fa-bars"></i>`;
-      }
-
+      toggleContainer.innerHTML = `<i class="fa-solid fa-bars"></i>`;
+      toggleContainer.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
       return toggleContainer;
     };
 
-    const navigation = () => {
-      const container = document.createElement("nav");
-      container.className = "primary-navigation";
-      if (window.innerWidth > 880) {
-        container.setAttribute("aria-hidden", false);
-      } else {
-        container.setAttribute("aria-hidden", true);
-      }
+    const createNavigation = () => {
+      const nav = document.createElement("nav");
+      nav.className = "primary-navigation";
+      nav.setAttribute("aria-label", "Main navigation");
 
-      const lists = () => {
-        const unOrderedList = document.createElement("ul");
-        unOrderedList.classList.add("nav-container");
-        const tabs = [
-          { page: "About", link: "#about" },
-          { page: "Work", link: "#work" },
-          { page: "Contact", link: "#contact" },
-        ];
-        tabs.forEach((item) => {
-          const list = document.createElement("li");
-          list.innerHTML = `<a class="nav-links" href="${item.link}">${item.page}</a>`; // Updated link with href attribute
-          unOrderedList.appendChild(list);
-        });
+      // Use matchMedia for better responsive handling
+      const mobileMediaQuery = window.matchMedia("(max-width: 880px)");
+      nav.setAttribute("aria-hidden", mobileMediaQuery.matches);
 
-        return unOrderedList;
-      };
-      container.appendChild(lists());
-      return container;
+      // Optional: Listen for resize events to update aria-hidden
+      mobileMediaQuery.addEventListener("change", (e) => {
+        nav.setAttribute("aria-hidden", e.matches);
+      });
+
+      const navList = document.createElement("ul");
+      navList.className = "nav-list";
+
+      const navItems = [
+        { label: "About", href: "#about" },
+        { label: "Work", href: "#work" },
+        { label: "Contact", href: "#contact" },
+      ];
+
+      navItems.forEach(({ label, href }) => {
+        const listItem = document.createElement("li");
+        listItem.className = "nav-item";
+
+        const link = document.createElement("a");
+        link.href = href;
+        link.textContent = label;
+        link.className = "nav-link";
+
+        listItem.appendChild(link);
+        navList.appendChild(listItem);
+      });
+
+      nav.appendChild(navList);
+      return nav;
     };
 
-    contentContainer.appendChild(title("Fear Not"));
-    contentContainer.appendChild(menuToggle());
-    contentContainer.appendChild(navigation());
+    const nav = createNavigation();
+    contentContainer.appendChild(title("</JB>"));
+    contentContainer.appendChild(menuToggle(nav));
+    contentContainer.appendChild(nav);
     headerContainer.appendChild(contentContainer);
     header.appendChild(headerContainer);
 
