@@ -61,7 +61,7 @@ export default class Contact {
     const container = document.createElement("div");
     container.className = "email-container";
 
-    const emailText = "email@email.com";
+    const emailText = "batayolajoshuaallen@gmail.com";
     container.textContent = emailText;
     container.style.cursor = "pointer";
 
@@ -80,7 +80,7 @@ export default class Contact {
     const container = document.createElement("div");
     container.className = "phone-container";
 
-    const phoneText = "123-456-7890";
+    const phoneText = "+63 928 214 3861";
     container.textContent = phoneText;
     container.style.cursor = "pointer";
 
@@ -99,8 +99,8 @@ export default class Contact {
     const container = document.createElement("div");
     container.className = "socmed-container";
 
-    container.innerHTML = `<a href="https://github.com"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>`;
+    container.innerHTML = `<a href="https://github.com/JoshAllenB"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/joshua-allen-batayola-6b3b4627b/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>`;
     return container;
   };
 }
