@@ -47,8 +47,8 @@ export default class About {
 
     const icons = document.createElement("div");
     icons.className = "icons";
-    icons.innerHTML = `<i class="fa-brands fa-github"></i>
-    <i class="fa-brands fa-linkedin"></i>`;
+    icons.innerHTML = `<a href="https://github.com/JoshAllenB" target="_blank"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/joshua-allen-batayola-6b3b4627b/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>`;
 
     iconContainer.appendChild(icons);
 
