@@ -1,6 +1,23 @@
 import stockPhoto from "../images/work-stockphoto.jpg";
 
 export default class Contact {
+  static copyToClipboard = (text) => {
+    if (!navigator.clipboard) {
+      console.error("Clipboard API not supported");
+      return;
+    }
+
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log("Copied:", text);
+        // Optional: show temporary UI feedback here
+      })
+      .catch((err) => {
+        console.error("Failed to copy:", err);
+      });
+  };
+
   static loadContact = () => {
     const container = document.createElement("div");
     container.className = "contact-container";
@@ -13,7 +30,6 @@ export default class Contact {
     container.appendChild(this.image());
 
     content.appendChild(this.title());
-    content.appendChild(this.address());
     content.appendChild(this.email());
     content.appendChild(this.phone());
     content.appendChild(this.socMed());
@@ -41,20 +57,21 @@ export default class Contact {
     return container;
   };
 
-  static address = () => {
-    const container = document.createElement("div");
-    container.className = "address-container";
-
-    container.innerHTML = "123 Main Street, Manila, Philippines";
-
-    return container;
-  };
-
   static email = () => {
     const container = document.createElement("div");
     container.className = "email-container";
 
-    container.innerHTML = "Email@email.com";
+    const emailText = "email@email.com";
+    container.textContent = emailText;
+    container.style.cursor = "pointer";
+
+    container.addEventListener("click", () => {
+      this.copyToClipboard(emailText);
+      container.textContent = "Copied!";
+      setTimeout(() => {
+        container.textContent = emailText;
+      }, 2000);
+    });
 
     return container;
   };
@@ -63,7 +80,17 @@ export default class Contact {
     const container = document.createElement("div");
     container.className = "phone-container";
 
-    container.innerHTML = "(000) 000-0000";
+    const phoneText = "123-456-7890";
+    container.textContent = phoneText;
+    container.style.cursor = "pointer";
+
+    container.addEventListener("click", () => {
+      this.copyToClipboard(phoneText);
+      container.textContent = "Copied!";
+      setTimeout(() => {
+        container.textContent = phoneText;
+      }, 2000);
+    });
 
     return container;
   };
@@ -72,10 +99,8 @@ export default class Contact {
     const container = document.createElement("div");
     container.className = "socmed-container";
 
-    container.innerHTML = `<a href="https://github.com/JoshAllenB"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/josh-allen-b92b72170/"><i class="fa-brands fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/joshallenb/"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="https://www.facebook.com/joshallenb/"><i class="fa-brands fa-facebook"></i></a>`;
+    container.innerHTML = `<a href="https://github.com"><i class="fa-brands fa-github"></i></a>
+    <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i></a>`;
     return container;
   };
 }
