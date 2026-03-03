@@ -5,12 +5,14 @@ export default class Handler {
 
   static navigationHandler = () => {
     const navToggle = document.querySelector(".menu-toggle");
-    navToggle.addEventListener("click", () => {
-      const navItems = document.querySelector(".nav-container");
-      navItems.classList.toggle("active");
-    });
+      navToggle.addEventListener("click", () => {
+        const navItems = document.querySelector(".nav-container");
+        if (navItems) {
+          navItems.classList.toggle("active");
+        }
+      });
 
-    const navLinks = document.querySelectorAll(".nav-links");
+    const navLinks = document.querySelectorAll(".nav-link");
 
     navLinks.forEach((link) => {
       link.addEventListener("click", (event) => {
@@ -26,8 +28,12 @@ export default class Handler {
 
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
+          const header = document.querySelector("header");
+          const headerHeight = header ? header.offsetHeight : 0;
+          const elementTop =
+            targetElement.getBoundingClientRect().top + window.pageYOffset;
           window.scrollTo({
-            top: targetElement.offsetTop - 200, // Adjust the offset as needed
+            top: elementTop - headerHeight,
             behavior: "smooth",
           });
         }
