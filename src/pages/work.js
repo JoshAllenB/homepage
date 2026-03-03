@@ -8,19 +8,18 @@ import wmmFilter from "../images/wmm/wmmFilter.png";
 import wmmView from "../images/wmm/wmmView.png";
 
 export default class Work {
-  // Define work items as data
   static workItems = [
     {
-      title: "WMM Subscription Manager",
+      title: "Subscription Manager",
       description:
-        "Internal software I made for Misionary Group to manage their magazine subscription status. It allows users to view, edit, and filter subscription information in a user-friendly interface.",
-      images: [wmmHome, wmmEdit, wmmOther, wmmFilter, wmmView], // can add images later],
+        "A MERN stack–based internal management system built for a missionary organization to streamline magazine subscription tracking. It enables efficient viewing, updating, and filtering of subscriber data through a clean and intuitive interface.",
+      images: [wmmHome, wmmEdit, wmmOther, wmmFilter, wmmView],
     },
     {
       title: "Weather App",
       description:
         "This app allows you to check current weather conditions for your location",
-      images: [weatherImg], // can add more later
+      images: [weatherImg],
       githubLink: "https://github.com/JoshAllenB/weather-app",
     },
     {
@@ -52,7 +51,6 @@ export default class Work {
     const cardContainer = document.createElement("div");
     cardContainer.className = "card-container";
 
-    // Generate cards dynamically from data
     this.workItems.forEach((item) => {
       const card = this.generateCard(
         item.title,
@@ -67,7 +65,6 @@ export default class Work {
     return container;
   };
 
-  // Add helper methods for managing work items
   static addWorkItem(item) {
     this.workItems.push(item);
   }
@@ -97,7 +94,6 @@ export default class Work {
     cardImage.alt = title;
     cardImage.style.cursor = "pointer";
 
-    // Create lightbox opener once
     if (!this.lightboxOpen) {
       this.lightboxOpen = this.createLightbox();
     }
@@ -105,6 +101,10 @@ export default class Work {
     cardImage.addEventListener("click", () => {
       this.lightboxOpen(images, 0);
     });
+
+    card.appendChild(cardImage);
+    card.appendChild(cardTitle);
+    card.appendChild(cardContent);
 
     if (githubLink) {
       const githubLinkElement = document.createElement("a");
@@ -119,10 +119,6 @@ export default class Work {
       githubLinkElement.appendChild(githubLogo);
       card.appendChild(githubLinkElement);
     }
-
-    card.appendChild(cardImage);
-    card.appendChild(cardTitle);
-    card.appendChild(cardContent);
 
     return card;
   };
